@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  /* cursor: none; */
+  cursor: none;
   overflow: hidden;
 }
 
@@ -39,6 +39,7 @@ input {
   font-size: 18px;
   border-radius: 40px;
   padding: 0px 20px 0px 20px;
+  cursor: none;
 }
 
 .two {
@@ -123,7 +124,7 @@ img {
   /* background-color: rgba(255, 255, 255, 0.5); */
   /* border: 1px solid #000; */
   pointer-events: none;
-  z-index: 9999;
+  z-index: 999;
 
   /* Ribbon effect */
   clip-path: polygon(0% 20%, 50% 0%, 100% 20%, 100% 80%, 50% 100%, 0% 80%);
@@ -148,6 +149,26 @@ img {
     background-color: rgb(0, 0, 255); /* End with blue */
   }
 }
+
+.i {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  clip-path: polygon(50% 0%, 100% 100%, 50% 50%, 0 100%);
+  transform: rotate(-20deg);
+  background-color: rgb(173, 172, 173);
+  z-index: 9999;
+  border-radius: 50%;
+}
+/* @keyframes wb {
+  0% {
+    background-color: rgb(255, 255, 255);
+  }
+
+  100% {
+    background-color: rgb(99, 8, 73);
+  }
+} */
 
 /* Hide the custom cursor on mobile devices */
 @media only screen and (max-width: 768px) {

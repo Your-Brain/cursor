@@ -13,8 +13,8 @@ let mymouse = (e) => {
   cursorElement.style.top = `${mouseY}px`;
   cursorElement.style.transform = `scale(${Math.random() * 0.5 + 0.5})`; // Smaller scale
 
-  cursorElement.style.setProperty("--x", `${Math.random() * 400 - 200}px`); // Adjusted range
-  cursorElement.style.setProperty("--y", `${Math.random() * 400 - 200}px`); // Adjusted range
+  cursorElement.style.setProperty("--x", `${Math.random() * 400 - 20}px`); // Adjusted range
+  cursorElement.style.setProperty("--y", `${Math.random() * 700 - 20}px`); // Adjusted range
 
   // Random hue for variety
   const hue = Math.random() * 360;
@@ -44,7 +44,8 @@ const binarySearch = (get, da) => {
     mid = Math.floor((start + end) / 2);
     if (get[mid] === da) {
       displayResults(get[mid]);
-      return;
+      let b = 1;
+      return b;
     } else if (get[mid] < da) {
       start = mid + 1;
     } else {
@@ -91,13 +92,24 @@ const displayResults = (item) => {
 input.addEventListener("input", (e) => {
   e.preventDefault();
 
-  const inpu = input.value[0];
+  const inpu = input.value.trim()[0];
   if (inpu) {
     const da = inpu.toLowerCase();
     // console.log(da);
     if (da >= "a" && da <= "z") {
       sub.style.display = "block";
       binarySearch(Object.keys(pic), da);
+      if (binarySearch() == 1) {
+        inpu = input.value.trim()[1];
+        if (inpu) {
+          const da = inpu.toLowerCase();
+          // console.log(da);
+          if (da >= "a" && da <= "z") {
+            sub.style.display = "block";
+            binarySearch(Object.keys(pic), da);
+          }
+        }
+      }
     }
   } else {
     sub.style.display = "none";
@@ -448,26 +460,32 @@ const pic = {
   },
 };
 
-//custom cursour
-
-// Custom cursor
-
-
-
-
-
+const p = document.createElement("i");
+p.classList.add("i");
+document.body.append(p);
 document.addEventListener("mousemove", (e) => {
+  const mouseX = e.pageX;
+  const mouseY = e.pageY;
+
+  p.style.left = `${mouseX - p.offsetWidth / 3}px`;
+  p.style.top = `${mouseY + p.offsetHeight / 9}px`;
+
   mymouse(e);
 });
 
 document.addEventListener("touchmove", (e) => {
-  e.preventDefault();
-  mymouse(e.touches[0]);
+  const touch = e.touches[0];
+  const mouseX = touch.pageX;
+  const mouseY = touch.pageY;
+
+  p.style.left = `${mouseX - p.offsetWidth / 3}px`;
+  p.style.top = `${mouseY + p.offsetHeight / 9}px`;
+
+  mymouse(touch);
 });
+
 document.addEventListener("click", (mouse) => {
-  for (let index = 0; index < 30; index++) {
-
-
+  for (let index = 0; index < 10; index++) {
     mymouse(mouse);
   }
-})
+});
